@@ -1,1 +1,4 @@
-DESIGN.md
+.build/
+.swiftpm/
+xcuserdata/
+.DS_Store

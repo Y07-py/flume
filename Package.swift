@@ -5,12 +5,16 @@ import PackageDescription
 
 let package = Package(
     name: "Flume",
+    platforms: [.macOS(.v15)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "Flume",
             targets: ["Flume"]
         ),
+    ],
+    dependencies: [
+        .package(url: "https://github.com/apple/swift-async-algorithms", from: "1.0.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -22,6 +26,12 @@ let package = Package(
             name: "FlumeTests",
             dependencies: ["Flume"]
         ),
+        .executableTarget(
+            name: "spike-backpressure",
+            dependencies: [
+                .product(name: "AsyncAlgorithms", package: "swift-async-algorithms"),
+            ]
+        )
     ],
     swiftLanguageModes: [.v6]
 )
